@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		981F61181E767517005485F8 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981F61171E767517005485F8 /* UserDetailViewController.swift */; };
 		98BE845B1E633518005336D2 /* GameViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE845A1E633518005336D2 /* GameViewController1.swift */; };
 		98E12C831E49104200C23467 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E12C821E49104200C23467 /* AppDelegate.swift */; };
 		98E12C851E49104200C23467 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E12C841E49104200C23467 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		981F61171E767517005485F8 /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		98BE845A1E633518005336D2 /* GameViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController1.swift; sourceTree = "<group>"; };
 		98E12C7F1E49104200C23467 /* Drink Much? V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Much? V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E12C821E49104200C23467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,8 +59,9 @@
 			isa = PBXGroup;
 			children = (
 				98E12C821E49104200C23467 /* AppDelegate.swift */,
-				98E12C841E49104200C23467 /* ViewController.swift */,
 				98E12C861E49104200C23467 /* Main.storyboard */,
+				98E12C841E49104200C23467 /* ViewController.swift */,
+				981F61171E767517005485F8 /* UserDetailViewController.swift */,
 				98BE845A1E633518005336D2 /* GameViewController1.swift */,
 				98E12C891E49104200C23467 /* Assets.xcassets */,
 				98E12C8B1E49104200C23467 /* LaunchScreen.storyboard */,
@@ -103,7 +106,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -147,6 +150,7 @@
 			files = (
 				98BE845B1E633518005336D2 /* GameViewController1.swift in Sources */,
 				98E12C851E49104200C23467 /* ViewController.swift in Sources */,
+				981F61181E767517005485F8 /* UserDetailViewController.swift in Sources */,
 				98E12C831E49104200C23467 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "IntroSwift.Drink-Much--V2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -291,6 +296,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "IntroSwift.Drink-Much--V2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
