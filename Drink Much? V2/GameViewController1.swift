@@ -22,31 +22,23 @@ class GameViewController1: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var sessionHighScoreLabel: UILabel!
-    @IBOutlet weak var careerHighScoreLabel: UILabel!
+    @IBOutlet weak var highScoreLabel: UILabel!
     
     var round = 0
     var score = 0
     var selectedButton: Int = -1
     var lastButton: Int = -1
     
-    var careerHighScore: Int?
-    var sessionHighScore = 0
+    var highScore: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if careerHighScore != 0 {
-            careerHighScoreLabel.text = "Career High Score: \(careerHighScore)"
+        if highScore != 0 {
+            highScoreLabel.text = "High Score: \(highScore)"
         } else {
-            careerHighScore = 0
-            careerHighScoreLabel.isHidden = true
-        }
-        
-        if sessionHighScore != 0 {
-            sessionHighScoreLabel.text = "Session High Score: \(sessionHighScore)"
-        } else {
-            sessionHighScoreLabel.isHidden = true
+            highScoreLabel.isHidden = true
+            highScore = 0
         }
         
         tryAgainButton.isHidden = true
@@ -60,10 +52,9 @@ class GameViewController1: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewController" {
-            let ViewController = segue.destination as? ViewController
-            let highScoreDummy = sender as? Int
-            ViewController?.highScore = highScoreDummy!
+        if segue.identifier == "UnwindToVCFromGameVC" {
+            let destinationVC = segue.destination as! ViewController
+            destinationVC.highScore = highScore!
         }
     }
     
@@ -82,22 +73,16 @@ class GameViewController1: UIViewController {
         button2.isEnabled = false
         button3.isEnabled = false
         
-        if score > sessionHighScore {
-            if score > careerHighScore! {
-                careerHighScore = score
-                sessionHighScore = score
-                scoreLabel.text = "New Career High Score: \(score)!"
-            } else if score > sessionHighScore {
-                sessionHighScore = score
-                    scoreLabel.text = "New Session High Score: \(score)!"
+        if score > highScore! {
+            if score > highScore! {
+                highScore = score
+                scoreLabel.text = "New High Score: \(score)"
             } else {
             scoreLabel.text = "Your Score: \(score)" }
         }
         
-        careerHighScoreLabel.isHidden = false
-        careerHighScoreLabel.text = "Career High Score: \(careerHighScore!)"
-        sessionHighScoreLabel.isHidden = false
-        sessionHighScoreLabel.text = "Session High Score: \(sessionHighScore)"
+        highScoreLabel.isHidden = false
+        highScoreLabel.text = "High Score: \(highScore!)"
         
         tryAgainButton.isHidden = false
     }
@@ -165,10 +150,6 @@ class GameViewController1: UIViewController {
     
     // MARK:- Actions
     
-    @IBAction func returnButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func button1Pressed(_ sender: UIButton) {
         instructionsLabel.text = "Press The Green Button!"
         checkButtonColor(0)
@@ -204,8 +185,7 @@ class GameViewController1: UIViewController {
         round = 0
         lastButton = -1
         scoreLabel.text = "Score:"
-        sessionHighScoreLabel.text = "Session High Score: \(sessionHighScore)"
-        careerHighScoreLabel.text = "Career High Score: \(careerHighScore!)"
+        highScoreLabel.text = "High Score: \(highScore!)"
         instructionsLabel.text = "Press Any Button To Start"
         tryAgainButton.isHidden = true
         timeLabel.text = "Once You Start, You Have 15 Seconds"

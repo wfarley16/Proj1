@@ -9,23 +9,32 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var drinkerImage: UIImageView!
     @IBOutlet weak var drinkCountLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var resetLabel: UIButton!
     @IBOutlet weak var bacLabel: UILabel!
+    @IBOutlet weak var testYourselfView: UIView!
+    @IBOutlet weak var drinkCountEtcView: UIView!
+    @IBOutlet weak var yourWeightLabel: UILabel!
     
-    var weightTollerance: Double = 0.0
+    // MARK: - Variables
+    
+    var weightTollerance = 0.02
+    var weightEntered = false
+    
     var drinkCount = 0
     var relativeDrinkCount: Double = 0
     var BAC: Double = 0
     
-    var highScore = 0
-    
     var firstDrinkTime = 0.0
     var liabilityWaiverAccepted: Bool = false
+    var highScore = 0
     
     var defaultsData = UserDefaults.standard
     
@@ -45,11 +54,15 @@ class ViewController: UIViewController {
                     "No, This is Number 13... You Might Have a Problem",
                     "Give Someone Your Phone. It's Dangerous"]
     
+    // MARK: - Override Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         weightTollerance = defaultsData.double(forKey: "weightTollerance")
+        
+        weightEntered = defaultsData.bool(forKey: "weightEntered")
         
         drinkCount = defaultsData.integer(forKey: "drinkCount")
         
@@ -58,12 +71,6 @@ class ViewController: UIViewController {
         relativeDrinkCount = defaultsData.double(forKey: "relativeDrinkCount")
         
         liabilityWaiverAccepted = defaultsData.bool(forKey: "liabilityWaiverAccepted")
-        
-        highScore = defaultsData.integer(forKey: "careerHighScore")
-        
-        if highScore == 0 {
-            defaultsData.set(highScore, forKey: "careerHighScore")
-        }
         
         BAC = relativeDrinkCount * weightTollerance
         
@@ -83,9 +90,13 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GameViewController1" {
-            let secondViewController = segue.destination as? GameViewController1
-            let highScoreDummy = sender as? Int
-            secondViewController?.careerHighScore = highScoreDummy
+            let destinationVC = segue.destination as! GameViewController1
+            destinationVC.highScore = highScore
+        }
+        
+        if segue.identifier == "LiabilityViewController" {
+            let destinationVC = segue.destination as! LiabilityViewController
+            destinationVC.accepted = liabilityWaiverAccepted
         }
     }
     
@@ -120,83 +131,64 @@ class ViewController: UIViewController {
                              36000,
                              39600,
                              43200]
-        
-        switch elapsedTime {
-        case 0 ..< timeInvervals[0]:
-            hoursLabel.text = "Hours Elapsed: Less Than 1"
-        case timeInvervals[0] ..< timeInvervals[1]:
-            relativeDrinkCount = Double(drinkCount) - 1
-            hoursLabel.text = "Hours Elapsed: 1"
-        case timeInvervals[1] ..< timeInvervals[2]:
-            relativeDrinkCount = Double(drinkCount) - 2
-            hoursLabel.text = "Hours Elapsed: 2"
-        case timeInvervals[2] ..< timeInvervals[3]:
-            relativeDrinkCount = Double(drinkCount) - 3
-            hoursLabel.text = "Hours Elapsed: 3"
-        case timeInvervals[3] ..< timeInvervals[4]:
-            relativeDrinkCount = Double(drinkCount) - 4
-            hoursLabel.text = "Hours Elapsed: 4"
-        case timeInvervals[4] ..< timeInvervals[5]:
-            relativeDrinkCount = Double(drinkCount) - 5
-            hoursLabel.text = "Hours Elapsed: 5"
-        case timeInvervals[5] ..< timeInvervals[6]:
-            relativeDrinkCount = Double(drinkCount) - 6
-            hoursLabel.text = "Hours Elapsed: 6"
-        case timeInvervals[6] ..< timeInvervals[7]:
-            relativeDrinkCount = Double(drinkCount) - 7
-            hoursLabel.text = "Hours Elapsed: 7"
-        case timeInvervals[7] ..< timeInvervals[8]:
-            relativeDrinkCount = Double(drinkCount) - 8
-            hoursLabel.text = "Hours Elapsed: 8"
-        case timeInvervals[8] ..< timeInvervals[9]:
-            relativeDrinkCount = Double(drinkCount) - 9
-            hoursLabel.text = "Hours Elapsed: 9"
-        case timeInvervals[9] ..< timeInvervals[10]:
-            relativeDrinkCount = Double(drinkCount) - 10
-            hoursLabel.text = "Hours Elapsed: 10"
-        case timeInvervals[10] ..< timeInvervals[11]:
-            relativeDrinkCount = Double(drinkCount) - 11
-            hoursLabel.text = "Hours Elapsed: 11"
-        case timeInvervals[11] ..< timeInvervals[12]:
-            relativeDrinkCount = Double(drinkCount) - 12
-            hoursLabel.text = "Hours Elapsed: 12"
-        default:
-            hoursLabel.text = "Hours Elapsed: Greater Than 12"
-        }
 
+        switch elapsedTime {
+        case timeInvervals[1] ..< timeInvervals[2]:
+                relativeDrinkCount = Double(drinkCount) + 1
+                hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[2] ..< timeInvervals[3]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[3] ..< timeInvervals[4]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[4] ..< timeInvervals[5]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[5] ..< timeInvervals[6]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[6] ..< timeInvervals[7]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[7] ..< timeInvervals[8]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[8] ..< timeInvervals[9]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[9] ..< timeInvervals[10]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        case timeInvervals[10] ..< timeInvervals[11]:
+            relativeDrinkCount = Double(drinkCount) + 1
+            hoursLabel.text = "Hours Elapsed: 1"
+        default:
+            hoursLabel.text = "Hours Elapsed: Less Than 1"
+            }
     }
     
     func markFirstDrinkTime() {
         if drinkCount == 1 {
             firstDrinkTime = NSTimeIntervalSince1970
             defaultsData.set(firstDrinkTime, forKey: "firstDrinkTime")
-            if liabilityWaiverAccepted == false {
-                showAlert(title: "Terms And Conditions", message: "You Can Read Our Terms And Conditions on Our Website (insert link). Press Accept to Continue", dismissMessage: "Accept")
-                liabilityWaiverAccepted = true
-                defaultsData.set(true, forKey: "liabilityWaiverAccepted")
             }
-        }
-    }
-    
-    func checkIfWeightInputted() {
-        if weightTollerance == 0.0 {
-            weightTollerance = 0.02
-            showAlert(title: "Please Enter Weight in User Info", message: "For Now We'll Just Set You to 0.02 Per Drink.", dismissMessage: "Ok")
-        }
     }
     
     // MARK: - Actions
-    
+        
     @IBAction func addDrinkPressed(_ sender: UIButton) {
+        
+        if liabilityWaiverAccepted == false {
+            showAlert(title: "You Must Accept Terms and Conditions Before Use", message: "Click Terms and Conditions to View", dismissMessage: "Ok")
+        }
         
         resetLabel.isHidden = false
         
         drinkCount = drinkCount + 1
         
         markFirstDrinkTime()
-        
-        checkIfWeightInputted()
-        
+                
         relativeDrinkCount = relativeDrinkCount + 1
         
         if relativeDrinkCount == 14 {
@@ -210,6 +202,10 @@ class ViewController: UIViewController {
         timer()
         
         defaultsData.synchronize()
+        
+        if weightEntered == false {
+            showAlert(title: "You Can Enter Your Weight To Increase Accuracy", message: "Go to User Details to Enter", dismissMessage: "Ok")
+        }
 
     }
 
@@ -225,25 +221,56 @@ class ViewController: UIViewController {
     }
     
     @IBAction func coordinationPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "GameViewController1", sender: highScore)
-    }
-    
-    @IBAction func settingsPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "UserDetails", sender: nil)
+        performSegue(withIdentifier: "GameViewController1", sender: nil)
     }
     
     @IBAction func unwindToViewController(sender: UIStoryboardSegue) {
-        if let gameViewController = sender.source as? GameViewController1 {
-            highScore = gameViewController.careerHighScore!
+        
+        if let sourceVC = sender.source as? LiabilityViewController {
+            if liabilityWaiverAccepted == false {
+            liabilityWaiverAccepted = sourceVC.accepted!
+            defaultsData.set(liabilityWaiverAccepted, forKey: "liabilityWaiverAccepted")
+            }
         }
         
-        if let detailViewController = sender.source as? UserDetailViewController {
-            weightTollerance = detailViewController.weightTollerance
+        if let sourceVC = sender.source as? GameViewController1 {
+            highScore = sourceVC.highScore!
+            defaultsData.synchronize()
         }
         
-        defaultsData.synchronize()
+    }
+    
+    func checkIfWeightHadBeenEntered() {
+        if weightEntered == false {
+            weightEntered = true
+            defaultsData.set(weightEntered, forKey: "weightEntered")
+            defaultsData.set(weightTollerance, forKey: "weightTollerance")
+        }
+    }
+    
+    @IBAction func weightIs100(_ sender: Any) {
+        weightTollerance = 0.03
+        checkIfWeightHadBeenEntered()
+        yourWeightLabel.text = "Your Weight: 100"
+    }
+    
+    @IBAction func weightIs150(_ sender: Any) {
+        weightTollerance = 0.025
+        checkIfWeightHadBeenEntered()
+        yourWeightLabel.text = "Your Weight: 150"
+    }
+    
+    @IBAction func weightIs200(_ sender: Any) {
+        weightTollerance = 0.02
+        checkIfWeightHadBeenEntered()
+        yourWeightLabel.text = "Your Weight: 200"
+    }
+    
+    @IBAction func weightIs250(_ sender: Any) {
+        weightTollerance = 0.015
+        checkIfWeightHadBeenEntered()
+        yourWeightLabel.text = "Your Weight: 250"
     }
 
+
 }
-
-
