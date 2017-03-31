@@ -252,24 +252,29 @@ class ViewController: UIViewController {
         weightTollerance = 0.03
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 100"
+        BAC = weightTollerance * Double(drinkCount)
+        updateLabels()
     }
     
     @IBAction func weightIs150(_ sender: Any) {
         weightTollerance = 0.025
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 150"
+        updateLabels()
     }
     
     @IBAction func weightIs200(_ sender: Any) {
         weightTollerance = 0.02
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 200"
+        updateLabels()
     }
     
     @IBAction func weightIs250(_ sender: Any) {
         weightTollerance = 0.015
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 250"
+        updateLabels()
     }
 
 
