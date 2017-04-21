@@ -22,11 +22,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var testYourselfView: UIView!
     @IBOutlet weak var drinkCountEtcView: UIView!
     @IBOutlet weak var yourWeightLabel: UILabel!
+    @IBOutlet weak var yourGenderLabel: UILabel!
     
     // MARK: - Variables
     
-    var weightTollerance = 0.02
     var weightEntered = false
+    var bodyWeight = 200.0
+    var gender = false
+    var genderEntered = false
     
     var drinkCount = 0
     var relativeDrinkCount: Double = 0
@@ -49,7 +52,8 @@ class ViewController: UIViewController {
                     "I don't know. I didn't take Psych",
                     "Ho Gome You're Drunk",
                     "Actually Just Clear Your Schedule for the Morning",
-                    "Man, You're Getting Fucked Tonight",
+                    "Why'd The Chicken Cross The Road?",
+                    "I don't think we have the technology to know that",
                     "Guess What Number You're At. Wait, don't look.",
                     "No, This is Number 13... You Might Have a Problem",
                     "Give Someone Your Phone. It's Dangerous"]
@@ -58,11 +62,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        weightTollerance = defaultsData.double(forKey: "weightTollerance")
+        bodyWeight = defaultsData.double(forKey: "bodyWeight")
         
         weightEntered = defaultsData.bool(forKey: "weightEntered")
+        
+        gender = defaultsData.bool(forKey: "gender")
+        
+        genderEntered = defaultsData.bool(forKey: "genderEntered")
         
         drinkCount = defaultsData.integer(forKey: "drinkCount")
         
@@ -72,20 +79,13 @@ class ViewController: UIViewController {
         
         liabilityWaiverAccepted = defaultsData.bool(forKey: "liabilityWaiverAccepted")
         
-        BAC = relativeDrinkCount * weightTollerance
-        
-        updateLabels()
+        calculateBAC()
         
         if drinkCount == 0 {
             resetLabel.isHidden = true
         } else {
             resetLabel.isHidden = false
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,7 +111,8 @@ class ViewController: UIViewController {
     
     func updateLabels() {
         drinkCountLabel.text = "Drink Count: \(drinkCount)"
-        bacLabel.text = "Expected BAC: \(BAC)"
+        let bacToShow = String(format: "%.3f", BAC)
+        bacLabel.text = "Expected BAC: \(bacToShow)"
         messageLabel.text = messages[drinkCount]
     }
     
@@ -137,32 +138,32 @@ class ViewController: UIViewController {
                 relativeDrinkCount = Double(drinkCount) + 1
                 hoursLabel.text = "Hours Elapsed: 1"
         case timeInvervals[2] ..< timeInvervals[3]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 2
+            hoursLabel.text = "Hours Elapsed: 2"
         case timeInvervals[3] ..< timeInvervals[4]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 3
+            hoursLabel.text = "Hours Elapsed: 3"
         case timeInvervals[4] ..< timeInvervals[5]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 4
+            hoursLabel.text = "Hours Elapsed: 4"
         case timeInvervals[5] ..< timeInvervals[6]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 5
+            hoursLabel.text = "Hours Elapsed: 5"
         case timeInvervals[6] ..< timeInvervals[7]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 6
+            hoursLabel.text = "Hours Elapsed: 6"
         case timeInvervals[7] ..< timeInvervals[8]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 7
+            hoursLabel.text = "Hours Elapsed: 7"
         case timeInvervals[8] ..< timeInvervals[9]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 8
+            hoursLabel.text = "Hours Elapsed: 8"
         case timeInvervals[9] ..< timeInvervals[10]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 9
+            hoursLabel.text = "Hours Elapsed: 9"
         case timeInvervals[10] ..< timeInvervals[11]:
-            relativeDrinkCount = Double(drinkCount) + 1
-            hoursLabel.text = "Hours Elapsed: 1"
+            relativeDrinkCount = Double(drinkCount) + 10
+            hoursLabel.text = "Hours Elapsed: 10"
         default:
             hoursLabel.text = "Hours Elapsed: Less Than 1"
             }
@@ -173,6 +174,21 @@ class ViewController: UIViewController {
             firstDrinkTime = NSTimeIntervalSince1970
             defaultsData.set(firstDrinkTime, forKey: "firstDrinkTime")
             }
+    }
+    
+    func calculateBAC() {
+        var r = 0.0
+        if gender == false {
+            r = 0.68
+        } else {
+            r = 0.55
+        }
+        let alcInGrams = (relativeDrinkCount * 14)
+        let bodyWeightInGrams = bodyWeight * 454
+        
+        BAC = (alcInGrams)/(bodyWeightInGrams * r) * 100
+        
+        updateLabels()
     }
     
     // MARK: - Actions
@@ -191,20 +207,18 @@ class ViewController: UIViewController {
                 
         relativeDrinkCount = relativeDrinkCount + 1
         
-        if relativeDrinkCount == 14 {
+        if Int(relativeDrinkCount) == messages.count-1 {
             showAlert(title: "That's As High As We Go", message: "Sorry if you're actually still drinking.", dismissMessage: "Ok")
         }
         
-        BAC = relativeDrinkCount * weightTollerance
-        
-        updateLabels()
+        calculateBAC()
         
         timer()
         
         defaultsData.synchronize()
         
-        if weightEntered == false {
-            showAlert(title: "You Can Enter Your Weight To Increase Accuracy", message: "Go to User Details to Enter", dismissMessage: "Ok")
+        if weightEntered == false || genderEntered == false {
+            showAlert(title: "You Can Enter Your Weight and Gender To Increase Accuracy", message: "Otherwise we're just plugging a guess into the formula", dismissMessage: "Ok")
         }
 
     }
@@ -212,6 +226,7 @@ class ViewController: UIViewController {
     @IBAction func resetButtonPressed(_ sender: Any) {
         drinkCount = 0
         relativeDrinkCount = 0
+        BAC = 0.0
         defaultsData.synchronize()
         drinkCountLabel.text = "Drink Count: "
         bacLabel.text = "Expected BAC: "
@@ -244,38 +259,58 @@ class ViewController: UIViewController {
         if weightEntered == false {
             weightEntered = true
             defaultsData.set(weightEntered, forKey: "weightEntered")
-            defaultsData.set(weightTollerance, forKey: "weightTollerance")
+            defaultsData.set(bodyWeight, forKey: "bodyWeight")
+        }
+    }
+    
+    func checkIfGenderHadBeenEntered() {
+        if genderEntered == false {
+            genderEntered = true
+            defaultsData.set(gender, forKey: "gender")
+            defaultsData.set(genderEntered, forKey: "genderEntered")
         }
     }
     
     @IBAction func weightIs100(_ sender: Any) {
-        weightTollerance = 0.03
+        bodyWeight = 100
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 100"
-        BAC = weightTollerance * Double(drinkCount)
-        updateLabels()
+        calculateBAC()
     }
     
     @IBAction func weightIs150(_ sender: Any) {
-        weightTollerance = 0.025
+        bodyWeight = 150
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 150"
-        updateLabels()
+        calculateBAC()
     }
     
     @IBAction func weightIs200(_ sender: Any) {
-        weightTollerance = 0.02
+        bodyWeight = 200
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 200"
-        updateLabels()
+        calculateBAC()
     }
     
     @IBAction func weightIs250(_ sender: Any) {
-        weightTollerance = 0.015
+        bodyWeight = 250
         checkIfWeightHadBeenEntered()
         yourWeightLabel.text = "Your Weight: 250"
-        updateLabels()
+        calculateBAC()
     }
 
+    @IBAction func genderIsM(_ sender: UIButton) {
+        gender = false
+        checkIfGenderHadBeenEntered()
+        yourGenderLabel.text = "Your Gender: Male"
+        calculateBAC()
+    }
 
+    @IBAction func genderIsF(_ sender: UIButton) {
+        gender = true
+        checkIfGenderHadBeenEntered()
+        yourGenderLabel.text = "Your Gender: Female"
+        calculateBAC()
+    }
+    
 }

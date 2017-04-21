@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		98BE845A1E633518005336D2 /* GameViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController1.swift; sourceTree = "<group>"; };
-		98E12C7F1E49104200C23467 /* Drink Much? V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drink Much? V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98E12C7F1E49104200C23467 /* Bottle Caps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bottle Caps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E12C821E49104200C23467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98E12C841E49104200C23467 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		98E12C871E49104200C23467 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		98E12C801E49104200C23467 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				98E12C7F1E49104200C23467 /* Drink Much? V2.app */,
+				98E12C7F1E49104200C23467 /* Bottle Caps.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 			);
 			name = "Drink Much? V2";
 			productName = "Drink Much? V2";
-			productReference = 98E12C7F1E49104200C23467 /* Drink Much? V2.app */;
+			productReference = 98E12C7F1E49104200C23467 /* Bottle Caps.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,10 +276,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XG2JBVVXS4;
 				INFOPLIST_FILE = "Drink Much? V2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IntroSwift.Drink-Much--V2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bottle Caps";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -291,10 +291,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XG2JBVVXS4;
 				INFOPLIST_FILE = "Drink Much? V2/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IntroSwift.Drink-Much--V2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bottle Caps";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

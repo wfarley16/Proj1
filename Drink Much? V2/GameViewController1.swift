@@ -35,7 +35,7 @@ class GameViewController1: UIViewController {
         super.viewDidLoad()
         
         if highScore != 0 {
-            highScoreLabel.text = "High Score: \(highScore)"
+            highScoreLabel.text = "High Score: \(highScore!)"
         } else {
             highScoreLabel.isHidden = true
             highScore = 0
