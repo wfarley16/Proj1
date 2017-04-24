@@ -13,7 +13,7 @@
         <!--Better Than Bottle Caps-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Drink_Much__V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bottle_Caps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -313,7 +313,7 @@
         <!--Liability View Controller-->
         <scene sceneID="QEb-ZG-anC">
             <objects>
-                <viewController id="7PN-Ff-Mjn" customClass="LiabilityViewController" customModule="Drink_Much__V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7PN-Ff-Mjn" customClass="LiabilityViewController" customModule="Bottle_Caps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LHr-1R-Kh5"/>
                         <viewControllerLayoutGuide type="bottom" id="Boc-xq-BxD"/>
@@ -334,7 +334,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="t2v-pB-Vvg"/>
                                 </constraints>
-                                <string key="text">In exchange for using this app, I agree to the following legal conditions and accept the following statements as true and confirm that I am currently capable of entering into a contract. I will not sue the makers of this app over any crimes or damages completed while using this app. I accept that this app does not support overdrinking, binge drinking, driving under the influence, and any dangerous actions committed during use. I accept that the expected BAC displayed on the main view for this app is not a scientific measurement. It is a mere estimate based on your inputted drink count. The BAC displayed should not be considered when deciding when to drive. In accepting, I also agree to these same terms and conditions during future use.</string>
+                                <mutableString key="text">In exchange for using this app, I agree to the following legal conditions and accept the following statements as true and confirm that I am currently capable of entering into a contract. I will not sue the makers of this app over any crimes or damages completed while using this app. I accept that this app does not support overdrinking, binge drinking, driving under the influence, and any dangerous actions committed during use. I accept that the expected BAC displayed on the main view for this app is not a scientific measurement. It is a mere estimate based on your inputted drink count. The BAC displayed should not be considered when deciding when to drive. In accepting, I also agree to these same terms and conditions during future use.</mutableString>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -383,7 +383,7 @@
         <!--Game View Controller1-->
         <scene sceneID="27A-Fz-Bkk">
             <objects>
-                <viewController id="raz-J5-0OB" customClass="GameViewController1" customModule="Drink_Much__V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="raz-J5-0OB" customClass="GameViewController1" customModule="Bottle_Caps" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sm9-jP-zUz"/>
                         <viewControllerLayoutGuide type="bottom" id="L2H-Fc-nzk"/>

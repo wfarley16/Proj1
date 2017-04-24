@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "98E12C7E1E49104200C23467"
-               BuildableName = "Drink Much? V2.app"
+               BuildableName = "Bottle Caps.app"
                BlueprintName = "Drink Much? V2"
                ReferencedContainer = "container:Drink Much? V2.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "98E12C7E1E49104200C23467"
-            BuildableName = "Drink Much? V2.app"
+            BuildableName = "Bottle Caps.app"
             BlueprintName = "Drink Much? V2"
             ReferencedContainer = "container:Drink Much? V2.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "98E12C7E1E49104200C23467"
-            BuildableName = "Drink Much? V2.app"
+            BuildableName = "Bottle Caps.app"
             BlueprintName = "Drink Much? V2"
             ReferencedContainer = "container:Drink Much? V2.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "98E12C7E1E49104200C23467"
-            BuildableName = "Drink Much? V2.app"
+            BuildableName = "Bottle Caps.app"
             BlueprintName = "Drink Much? V2"
             ReferencedContainer = "container:Drink Much? V2.xcodeproj">
          </BuildableReference>
