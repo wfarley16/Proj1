@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		986732D91EB237C100268F7F /* DrinkerUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986732D81EB237C100268F7F /* DrinkerUserDefaults.swift */; };
 		98BE845B1E633518005336D2 /* GameViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BE845A1E633518005336D2 /* GameViewController1.swift */; };
 		98E12C831E49104200C23467 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E12C821E49104200C23467 /* AppDelegate.swift */; };
 		98E12C851E49104200C23467 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E12C841E49104200C23467 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		986732D81EB237C100268F7F /* DrinkerUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkerUserDefaults.swift; sourceTree = "<group>"; };
 		98BE845A1E633518005336D2 /* GameViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController1.swift; sourceTree = "<group>"; };
 		98E12C7F1E49104200C23467 /* Bottle Caps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bottle Caps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E12C821E49104200C23467 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,8 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				98E12C821E49104200C23467 /* AppDelegate.swift */,
-				98F3528A1E82F9540039AAFD /* LiabilityViewController.swift */,
+				986732D81EB237C100268F7F /* DrinkerUserDefaults.swift */,
 				98E12C841E49104200C23467 /* ViewController.swift */,
+				98F3528A1E82F9540039AAFD /* LiabilityViewController.swift */,
 				98BE845A1E633518005336D2 /* GameViewController1.swift */,
 				98E12C861E49104200C23467 /* Main.storyboard */,
 				98E12C891E49104200C23467 /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				98BE845B1E633518005336D2 /* GameViewController1.swift in Sources */,
+				986732D91EB237C100268F7F /* DrinkerUserDefaults.swift in Sources */,
 				98E12C851E49104200C23467 /* ViewController.swift in Sources */,
 				98F3528B1E82F9540039AAFD /* LiabilityViewController.swift in Sources */,
 				98E12C831E49104200C23467 /* AppDelegate.swift in Sources */,

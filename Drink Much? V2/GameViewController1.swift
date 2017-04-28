@@ -29,10 +29,14 @@ class GameViewController1: UIViewController {
     var selectedButton: Int = -1
     var lastButton: Int = -1
     
-    var highScore: Int?
+    var highScore: Int!
+    
+    var drinkerInfo = [DrinkerUserDefaults]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        highScore = drinkerInfo[0].highScore
         
         if highScore != 0 {
             highScoreLabel.text = "High Score: \(highScore!)"
@@ -44,11 +48,6 @@ class GameViewController1: UIViewController {
         tryAgainButton.isHidden = true
         
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

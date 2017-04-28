@@ -178,47 +178,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCC-6w-oZO">
-                                        <rect key="frame" x="50" y="115" width="120" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6l-gY-We8">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <state key="normal" title="100">
-                                                    <color key="titleColor" red="0.3672381938" green="0.58425384759999999" blue="0.80035799740000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weightIs100:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lnn-ae-0OX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEl-TF-dUR">
-                                                <rect key="frame" x="30" y="0.0" width="30" height="30"/>
-                                                <state key="normal" title="150">
-                                                    <color key="titleColor" red="0.3672381938" green="0.58425384759999999" blue="0.80035799740000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weightIs150:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gm8-RE-Pa7"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ob5-OG-JrQ">
-                                                <rect key="frame" x="60" y="0.0" width="30" height="30"/>
-                                                <state key="normal" title="200">
-                                                    <color key="titleColor" red="0.3672381938" green="0.58425384759999999" blue="0.80035799740000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weightIs200:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eHV-Kj-JnK"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erW-EI-NZe">
-                                                <rect key="frame" x="90" y="0.0" width="30" height="30"/>
-                                                <state key="normal" title="250">
-                                                    <color key="titleColor" red="0.3672381938" green="0.58425384759999999" blue="0.80035799740000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="weightIs250:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aDI-g8-ePO"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdT-au-QfT">
                                         <rect key="frame" x="270" y="115" width="60" height="30"/>
                                         <subviews>
@@ -242,6 +201,17 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(enter weight in lbs)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuH-Yt-I2L">
+                                        <rect key="frame" x="5" y="115" width="145" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="weightTextField:" destination="BYZ-38-t0r" eventType="editingChanged" id="1nC-qj-NQy"/>
+                                            <action selector="weightTextFieldEdited:" destination="BYZ-38-t0r" eventType="editingChanged" id="sFU-Mp-WnF"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -254,12 +224,10 @@
                                     <constraint firstItem="jcn-f8-g6E" firstAttribute="leading" secondItem="FUF-cY-RZV" secondAttribute="leading" id="EID-5U-FqA"/>
                                     <constraint firstItem="jcn-f8-g6E" firstAttribute="leading" secondItem="bIh-wo-BZn" secondAttribute="leading" constant="5" id="FoO-bf-0pw"/>
                                     <constraint firstItem="ZVf-DY-rOv" firstAttribute="top" secondItem="udh-wb-RC5" secondAttribute="bottom" constant="11.5" id="IEM-2a-9bG"/>
-                                    <constraint firstItem="LCC-6w-oZO" firstAttribute="leading" secondItem="bIh-wo-BZn" secondAttribute="leading" constant="50" id="PBH-6O-Glo"/>
                                     <constraint firstItem="ZVf-DY-rOv" firstAttribute="leading" secondItem="bIh-wo-BZn" secondAttribute="leading" constant="10" id="XuL-Ki-vhx"/>
                                     <constraint firstAttribute="trailing" secondItem="jcn-f8-g6E" secondAttribute="trailing" id="aD8-ES-9el"/>
                                     <constraint firstItem="rKG-Bi-eHP" firstAttribute="top" secondItem="udh-wb-RC5" secondAttribute="bottom" constant="11.5" id="gfA-ZZ-oBo"/>
                                     <constraint firstAttribute="trailing" secondItem="JdT-au-QfT" secondAttribute="trailing" constant="45" id="iei-cj-Kcg"/>
-                                    <constraint firstAttribute="bottom" secondItem="LCC-6w-oZO" secondAttribute="bottom" id="kMC-o4-A3E"/>
                                     <constraint firstItem="udh-wb-RC5" firstAttribute="top" secondItem="FUF-cY-RZV" secondAttribute="bottom" constant="4" id="ovY-gM-vum"/>
                                     <constraint firstItem="jcn-f8-g6E" firstAttribute="trailing" secondItem="FUF-cY-RZV" secondAttribute="trailing" id="u8u-0x-u2C"/>
                                     <constraint firstItem="FUF-cY-RZV" firstAttribute="trailing" secondItem="udh-wb-RC5" secondAttribute="trailing" id="xgQ-xC-KzV"/>
@@ -301,6 +269,7 @@
                         <outlet property="messageLabel" destination="eYW-Jb-o46" id="9Uq-ZW-0mV"/>
                         <outlet property="resetLabel" destination="Eu2-hI-uEd" id="eav-98-qHr"/>
                         <outlet property="testYourselfView" destination="jvU-KC-WqR" id="3KX-mt-wYp"/>
+                        <outlet property="weightTextField" destination="xuH-Yt-I2L" id="NpX-Ih-wgG"/>
                         <outlet property="yourGenderLabel" destination="rKG-Bi-eHP" id="yG8-wb-pAE"/>
                         <outlet property="yourWeightLabel" destination="ZVf-DY-rOv" id="zO3-XO-cHD"/>
                         <segue destination="raz-J5-0OB" kind="presentation" identifier="GameViewController1" id="hKl-ja-BYD"/>
@@ -308,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740.5797101449277" y="129.61956521739131"/>
+            <point key="canvasLocation" x="1740" y="129.08545727136433"/>
         </scene>
         <!--Liability View Controller-->
         <scene sceneID="QEb-ZG-anC">
@@ -334,11 +303,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="t2v-pB-Vvg"/>
                                 </constraints>
-                                <mutableString key="text">In exchange for using this app, I agree to the following legal conditions and accept the following statements as true and confirm that I am currently capable of entering into a contract. I will not sue the makers of this app over any crimes or damages completed while using this app. I accept that this app does not support overdrinking, binge drinking, driving under the influence, and any dangerous actions committed during use. I accept that the expected BAC displayed on the main view for this app is not a scientific measurement. It is a mere estimate based on your inputted drink count. The BAC displayed should not be considered when deciding when to drive. In accepting, I also agree to these same terms and conditions during future use.</mutableString>
+                                <string key="text">In exchange for using this app, I agree to the following legal conditions and accept the following statements as true and confirm that I am currently capable of entering into a contract. I will not sue the makers of this app over any crimes or damages completed while using this app. I accept that this app does not support overdrinking, binge drinking, driving under the influence, and any dangerous actions committed during use. I accept that the expected BAC displayed on the main view for this app is not a scientific measurement. It is a mere estimate based on your inputted drink count. The BAC displayed should not be considered when deciding when to drive. In accepting, I also agree to these same terms and conditions during future use.</string>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Z-Lu-snz">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Z-Lu-snz">
                                 <rect key="frame" x="73" y="424.5" width="229" height="36"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="Accept Terms and Conditions">
@@ -346,32 +315,19 @@
                                 </state>
                                 <connections>
                                     <action selector="acceptTCPressed:" destination="7PN-Ff-Mjn" eventType="touchUpInside" id="5hc-Vj-twS"/>
+                                    <segue destination="8eN-Th-jjQ" kind="unwind" unwindAction="unwindToViewControllerWithSender:" id="sg4-HO-5aG"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B59-MK-82h">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Return" id="AjZ-qV-uaA">
-                                        <connections>
-                                            <segue destination="8eN-Th-jjQ" kind="unwind" identifier="UnwindToVCFromLiabilityVC" unwindAction="unwindToViewControllerWithSender:" id="JPQ-Ux-4ce"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.016121846959999998" green="0.50470087669999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="CLz-HO-tbX" firstAttribute="centerX" secondItem="hcI-wk-UaV" secondAttribute="centerX" id="0nK-wi-p7F"/>
                             <constraint firstItem="hcI-wk-UaV" firstAttribute="leading" secondItem="Y1v-QI-48w" secondAttribute="leadingMargin" id="2YE-8r-HFZ"/>
-                            <constraint firstItem="B59-MK-82h" firstAttribute="leading" secondItem="CLz-HO-tbX" secondAttribute="leading" id="4xI-Hl-5Bu"/>
-                            <constraint firstItem="B59-MK-82h" firstAttribute="bottom" secondItem="Boc-xq-BxD" secondAttribute="top" id="VR0-77-UEi"/>
-                            <constraint firstItem="B59-MK-82h" firstAttribute="trailing" secondItem="CLz-HO-tbX" secondAttribute="trailing" id="Vx2-Xd-MNz"/>
                             <constraint firstItem="Q2Z-Lu-snz" firstAttribute="top" secondItem="hcI-wk-UaV" secondAttribute="bottom" constant="23" id="YLP-Qg-iyk"/>
                             <constraint firstItem="hcI-wk-UaV" firstAttribute="top" secondItem="CLz-HO-tbX" secondAttribute="bottom" constant="8" symbolic="YES" id="gk8-EJ-ex4"/>
                             <constraint firstItem="CLz-HO-tbX" firstAttribute="leading" secondItem="Y1v-QI-48w" secondAttribute="leading" id="o1l-eF-Qdb"/>
                             <constraint firstAttribute="trailing" secondItem="CLz-HO-tbX" secondAttribute="trailing" id="pUb-0T-8CB"/>
                             <constraint firstItem="CLz-HO-tbX" firstAttribute="top" secondItem="LHr-1R-Kh5" secondAttribute="bottom" id="yaf-TJ-eUA"/>
-                            <constraint firstItem="B59-MK-82h" firstAttribute="centerX" secondItem="Q2Z-Lu-snz" secondAttribute="centerX" id="zFU-4R-WPC"/>
                         </constraints>
                     </view>
                 </viewController>

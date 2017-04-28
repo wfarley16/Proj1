@@ -23,25 +23,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var drinkCountEtcView: UIView!
     @IBOutlet weak var yourWeightLabel: UILabel!
     @IBOutlet weak var yourGenderLabel: UILabel!
+    @IBOutlet weak var weightTextField: UITextField!
     
     // MARK: - Variables
     
-    var weightEntered = false
-    var bodyWeight = 200.0
-    var gender = false
-    var genderEntered = false
+    var drinkerInfo = [DrinkerUserDefaults]()
     
-    var drinkCount = 0
-    var relativeDrinkCount: Double = 0
-    var BAC: Double = 0
+    var bodyWeight: Int!
+    var gender: Bool!
     
-    var firstDrinkTime = 0.0
-    var liabilityWaiverAccepted: Bool = false
-    var highScore = 0
+    var drinkCount: Int!
+    var relativeDrinkCount: Int!
+    var BAC: Double!
     
-    var defaultsData = UserDefaults.standard
+    var firstDrinkTime: Double!
+    var liabilityWaiverAccepted: Bool!
+    var highScore: Int!
     
-    let messages = ["I Solemnly Swear That I Am Up to No Good",
+    var messages = ["I Solemnly Swear That I Am Up to No Good",
                     "That's A Start",
                     "Two Down. I told you I can drink, Mom",
                     "Third Time's The Charm",
@@ -63,35 +62,45 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bodyWeight = defaultsData.double(forKey: "bodyWeight")
+        if let drinkerDefaultsData = UserDefaults.standard.object(forKey: "drinkerData") as? Data {
+            if let drinkerDefaultsArray = NSKeyedUnarchiver.unarchiveObject(with: drinkerDefaultsData) as? [DrinkerUserDefaults] {
+                print("Here is where you would populate drinker info")
+//                drinkerInfo = drinkerDefaultsArray
+            } else {
+                print("error creating array")
+            }
+        } else {
+            print("error loading data")
+            let defaultDrinker = DrinkerUserDefaults()
+            defaultDrinker.acceptedLiabilityAgreement = false
+            defaultDrinker.drinkCount = 0
+            defaultDrinker.firstDrinkTime = NSTimeIntervalSince1970
+            defaultDrinker.gender = false
+            defaultDrinker.weight = 200
+            defaultDrinker.highScore = 0
+            drinkerInfo.append(defaultDrinker)
+            relativeDrinkCount = 0
+        }
         
-        weightEntered = defaultsData.bool(forKey: "weightEntered")
-        
-        gender = defaultsData.bool(forKey: "gender")
-        
-        genderEntered = defaultsData.bool(forKey: "genderEntered")
-        
-        drinkCount = defaultsData.integer(forKey: "drinkCount")
-        
-        defaultsData.set(drinkCount, forKey: "drinkCount")
-        
-        relativeDrinkCount = defaultsData.double(forKey: "relativeDrinkCount")
-        
-        liabilityWaiverAccepted = defaultsData.bool(forKey: "liabilityWaiverAccepted")
-        
-        calculateBAC()
+        bodyWeight = drinkerInfo[0].weight
+        gender = drinkerInfo[0].gender
+        drinkCount = drinkerInfo[0].drinkCount
+        firstDrinkTime = drinkerInfo[0].firstDrinkTime
+        liabilityWaiverAccepted = drinkerInfo[0].acceptedLiabilityAgreement
+        highScore = drinkerInfo[0].highScore
         
         if drinkCount == 0 {
             resetLabel.isHidden = true
         } else {
             resetLabel.isHidden = false
+            calculateBAC()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GameViewController1" {
             let destinationVC = segue.destination as! GameViewController1
-            destinationVC.highScore = highScore
+            destinationVC.drinkerInfo = drinkerInfo
         }
         
         if segue.identifier == "LiabilityViewController" {
@@ -107,6 +116,13 @@ class ViewController: UIViewController {
         let defaultAction = UIAlertAction(title: dismissMessage, style: .default, handler: nil)
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func saveDrinkerDefaults() {
+        var drinkerDefaultsArray = [DrinkerUserDefaults]()
+        drinkerDefaultsArray = drinkerInfo
+        let drinkerData = NSKeyedArchiver.archivedData(withRootObject: drinkerDefaultsArray)
+        UserDefaults.standard.set(drinkerData, forKey: "drinkerData")
     }
     
     func updateLabels() {
@@ -135,34 +151,34 @@ class ViewController: UIViewController {
 
         switch elapsedTime {
         case timeInvervals[1] ..< timeInvervals[2]:
-                relativeDrinkCount = Double(drinkCount) + 1
+                relativeDrinkCount = drinkCount - 1
                 hoursLabel.text = "Hours Elapsed: 1"
         case timeInvervals[2] ..< timeInvervals[3]:
-            relativeDrinkCount = Double(drinkCount) + 2
+            relativeDrinkCount = drinkCount - 2
             hoursLabel.text = "Hours Elapsed: 2"
         case timeInvervals[3] ..< timeInvervals[4]:
-            relativeDrinkCount = Double(drinkCount) + 3
+            relativeDrinkCount = drinkCount - 3
             hoursLabel.text = "Hours Elapsed: 3"
         case timeInvervals[4] ..< timeInvervals[5]:
-            relativeDrinkCount = Double(drinkCount) + 4
+            relativeDrinkCount = drinkCount - 4
             hoursLabel.text = "Hours Elapsed: 4"
         case timeInvervals[5] ..< timeInvervals[6]:
-            relativeDrinkCount = Double(drinkCount) + 5
+            relativeDrinkCount = drinkCount - 5
             hoursLabel.text = "Hours Elapsed: 5"
         case timeInvervals[6] ..< timeInvervals[7]:
-            relativeDrinkCount = Double(drinkCount) + 6
+            relativeDrinkCount = drinkCount - 6
             hoursLabel.text = "Hours Elapsed: 6"
         case timeInvervals[7] ..< timeInvervals[8]:
-            relativeDrinkCount = Double(drinkCount) + 7
+            relativeDrinkCount = drinkCount - 7
             hoursLabel.text = "Hours Elapsed: 7"
         case timeInvervals[8] ..< timeInvervals[9]:
-            relativeDrinkCount = Double(drinkCount) + 8
+            relativeDrinkCount = drinkCount - 8
             hoursLabel.text = "Hours Elapsed: 8"
         case timeInvervals[9] ..< timeInvervals[10]:
-            relativeDrinkCount = Double(drinkCount) + 9
+            relativeDrinkCount = drinkCount - 9
             hoursLabel.text = "Hours Elapsed: 9"
         case timeInvervals[10] ..< timeInvervals[11]:
-            relativeDrinkCount = Double(drinkCount) + 10
+            relativeDrinkCount = drinkCount - 10
             hoursLabel.text = "Hours Elapsed: 10"
         default:
             hoursLabel.text = "Hours Elapsed: Less Than 1"
@@ -172,7 +188,7 @@ class ViewController: UIViewController {
     func markFirstDrinkTime() {
         if drinkCount == 1 {
             firstDrinkTime = NSTimeIntervalSince1970
-            defaultsData.set(firstDrinkTime, forKey: "firstDrinkTime")
+            saveDrinkerDefaults()
             }
     }
     
@@ -183,10 +199,13 @@ class ViewController: UIViewController {
         } else {
             r = 0.55
         }
+        
+        timer()
+        
         let alcInGrams = (relativeDrinkCount * 14)
         let bodyWeightInGrams = bodyWeight * 454
         
-        BAC = (alcInGrams)/(bodyWeightInGrams * r) * 100
+        BAC = (Double(alcInGrams))/(Double(bodyWeightInGrams) * r) * 100
         
         updateLabels()
     }
@@ -197,6 +216,7 @@ class ViewController: UIViewController {
         
         if liabilityWaiverAccepted == false {
             showAlert(title: "You Must Accept Terms and Conditions Before Use", message: "Click Terms and Conditions to View", dismissMessage: "Ok")
+            performSegue(withIdentifier: "LiabilityViewController", sender: nil)
         }
         
         resetLabel.isHidden = false
@@ -207,19 +227,13 @@ class ViewController: UIViewController {
                 
         relativeDrinkCount = relativeDrinkCount + 1
         
-        if Int(relativeDrinkCount) == messages.count-1 {
-            showAlert(title: "That's As High As We Go", message: "Sorry if you're actually still drinking.", dismissMessage: "Ok")
+        if drinkCount == messages.count-1 {
+            messages.append("Well I'm out of clever messages")
         }
         
         calculateBAC()
         
-        timer()
-        
-        defaultsData.synchronize()
-        
-        if weightEntered == false || genderEntered == false {
-            showAlert(title: "You Can Enter Your Weight and Gender To Increase Accuracy", message: "Otherwise we're just plugging a guess into the formula", dismissMessage: "Ok")
-        }
+        saveDrinkerDefaults()
 
     }
 
@@ -227,7 +241,7 @@ class ViewController: UIViewController {
         drinkCount = 0
         relativeDrinkCount = 0
         BAC = 0.0
-        defaultsData.synchronize()
+        saveDrinkerDefaults()
         drinkCountLabel.text = "Drink Count: "
         bacLabel.text = "Expected BAC: "
         messageLabel.text = messages[0]
@@ -243,74 +257,42 @@ class ViewController: UIViewController {
         
         if let sourceVC = sender.source as? LiabilityViewController {
             if liabilityWaiverAccepted == false {
-            liabilityWaiverAccepted = sourceVC.accepted!
-            defaultsData.set(liabilityWaiverAccepted, forKey: "liabilityWaiverAccepted")
+                liabilityWaiverAccepted = sourceVC.accepted!
+                saveDrinkerDefaults()
             }
         }
         
         if let sourceVC = sender.source as? GameViewController1 {
             highScore = sourceVC.highScore!
-            defaultsData.synchronize()
+            saveDrinkerDefaults()
         }
         
     }
     
-    func checkIfWeightHadBeenEntered() {
-        if weightEntered == false {
-            weightEntered = true
-            defaultsData.set(weightEntered, forKey: "weightEntered")
-            defaultsData.set(bodyWeight, forKey: "bodyWeight")
+    @IBAction func weightTextFieldEdited(_ sender: UITextField) {
+        if let enteredWeight = Int(weightTextField.text!) {
+            bodyWeight = enteredWeight
+            yourWeightLabel.text = "Your Weight: \(bodyWeight)"
+            calculateBAC()
+            saveDrinkerDefaults()
+        } else {
+            showAlert(title: "Invalid Number", message: "Please enter a valid weight. No decimals, commas, or non-numeric digits.", dismissMessage: "Ok")
         }
-    }
-    
-    func checkIfGenderHadBeenEntered() {
-        if genderEntered == false {
-            genderEntered = true
-            defaultsData.set(gender, forKey: "gender")
-            defaultsData.set(genderEntered, forKey: "genderEntered")
-        }
-    }
-    
-    @IBAction func weightIs100(_ sender: Any) {
-        bodyWeight = 100
-        checkIfWeightHadBeenEntered()
-        yourWeightLabel.text = "Your Weight: 100"
-        calculateBAC()
-    }
-    
-    @IBAction func weightIs150(_ sender: Any) {
-        bodyWeight = 150
-        checkIfWeightHadBeenEntered()
-        yourWeightLabel.text = "Your Weight: 150"
-        calculateBAC()
-    }
-    
-    @IBAction func weightIs200(_ sender: Any) {
-        bodyWeight = 200
-        checkIfWeightHadBeenEntered()
-        yourWeightLabel.text = "Your Weight: 200"
-        calculateBAC()
-    }
-    
-    @IBAction func weightIs250(_ sender: Any) {
-        bodyWeight = 250
-        checkIfWeightHadBeenEntered()
-        yourWeightLabel.text = "Your Weight: 250"
-        calculateBAC()
+
     }
 
     @IBAction func genderIsM(_ sender: UIButton) {
         gender = false
-        checkIfGenderHadBeenEntered()
         yourGenderLabel.text = "Your Gender: Male"
         calculateBAC()
+        saveDrinkerDefaults()
     }
 
     @IBAction func genderIsF(_ sender: UIButton) {
         gender = true
-        checkIfGenderHadBeenEntered()
         yourGenderLabel.text = "Your Gender: Female"
         calculateBAC()
+        saveDrinkerDefaults()
     }
     
 }
