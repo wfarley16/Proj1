@@ -15,9 +15,13 @@
 		98E12C8A1E49104200C23467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98E12C891E49104200C23467 /* Assets.xcassets */; };
 		98E12C8D1E49104200C23467 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E12C8B1E49104200C23467 /* LaunchScreen.storyboard */; };
 		98F3528B1E82F9540039AAFD /* LiabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F3528A1E82F9540039AAFD /* LiabilityViewController.swift */; };
+		C3BA04E009FB5F80BE3B2EA7 /* Pods_Drink_Much__V2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E7E785B6AB0EF45C6A2E11 /* Pods_Drink_Much__V2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		293088244A0CFBEA109E565B /* Pods-Drink Much? V2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drink Much? V2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drink Much? V2/Pods-Drink Much? V2.release.xcconfig"; sourceTree = "<group>"; };
+		68E7E785B6AB0EF45C6A2E11 /* Pods_Drink_Much__V2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drink_Much__V2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		895A29EBEFB8134C621DFC19 /* Pods-Drink Much? V2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drink Much? V2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drink Much? V2/Pods-Drink Much? V2.debug.xcconfig"; sourceTree = "<group>"; };
 		986732D81EB237C100268F7F /* DrinkerUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkerUserDefaults.swift; sourceTree = "<group>"; };
 		98BE845A1E633518005336D2 /* GameViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController1.swift; sourceTree = "<group>"; };
 		98E12C7F1E49104200C23467 /* Bottle Caps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bottle Caps.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BA04E009FB5F80BE3B2EA7 /* Pods_Drink_Much__V2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4C82DC2E2F1A7FAB00EED2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				895A29EBEFB8134C621DFC19 /* Pods-Drink Much? V2.debug.xcconfig */,
+				293088244A0CFBEA109E565B /* Pods-Drink Much? V2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		98E12C761E49104200C23467 = {
 			isa = PBXGroup;
 			children = (
 				98E12C811E49104200C23467 /* Drink Much? V2 */,
 				98E12C801E49104200C23467 /* Products */,
+				0E4C82DC2E2F1A7FAB00EED2 /* Pods */,
+				D121BD4B499CF36454D77684 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +89,14 @@
 			path = "Drink Much? V2";
 			sourceTree = "<group>";
 		};
+		D121BD4B499CF36454D77684 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68E7E785B6AB0EF45C6A2E11 /* Pods_Drink_Much__V2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 98E12C911E49104200C23467 /* Build configuration list for PBXNativeTarget "Drink Much? V2" */;
 			buildPhases = (
+				81A0D20629700B8DFCC1E24D /* [CP] Check Pods Manifest.lock */,
 				98E12C7B1E49104200C23467 /* Sources */,
 				98E12C7C1E49104200C23467 /* Frameworks */,
 				98E12C7D1E49104200C23467 /* Resources */,
+				E5C63A8255AF2DC07029377B /* [CP] Embed Pods Frameworks */,
+				CA19E9D124F0B97296FEBF1C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,6 +172,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81A0D20629700B8DFCC1E24D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CA19E9D124F0B97296FEBF1C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drink Much? V2/Pods-Drink Much? V2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5C63A8255AF2DC07029377B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drink Much? V2/Pods-Drink Much? V2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		98E12C7B1E49104200C23467 /* Sources */ = {
@@ -278,6 +353,7 @@
 		};
 		98E12C921E49104200C23467 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 895A29EBEFB8134C621DFC19 /* Pods-Drink Much? V2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: William Farley (422AZG773E)";
@@ -296,6 +372,7 @@
 		};
 		98E12C931E49104200C23467 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293088244A0CFBEA109E565B /* Pods-Drink Much? V2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: William Farley (422AZG773E)";
